@@ -1,0 +1,19 @@
+Create TABLE UserIG(
+	UID int PRIMARY KEY,
+	nickname varchar ,
+    email varchar,
+   	passphrase varchar
+)
+
+Create TABLE gallery(
+	GID int PRIMARY KEY,
+	name varchar(100) ,
+    decription varchar(500),
+   	UID int,
+    FOREIGN KEY (UID) REFERENCES userig(UID)
+)
+
+Create TABLE Picture( PID int PRIMARY KEY, image blob , Name varchar(100), thumbnail blob, GID int, FOREIGN KEY (GID) REFERENCES gallery(GID) )
+
+Create TABLE PictureTag( PID int, TID int )
+Create TABLE Tag( TID int PRIMARY KEY, tagname varchar(100) )

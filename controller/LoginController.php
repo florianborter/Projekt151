@@ -28,5 +28,10 @@ require_once '../repository/LoginRepository.php';
       $view->heading = 'Registration';
       $view->display();
     }
+
+    public function addUser(){
+        $loginRepo = new LoginRepository();
+        $loginRepo->addUser($_POST["nickname"], $_POST["email"], $_POST["password"]);
+    }
 }
 ?>

@@ -23,6 +23,7 @@ require_once '../repository/LoginRepository.php';
      */
     public function registration()
     {
+        echo "<p>registration</p>";
       $view = new View('login_registration');
       $view->title = 'Bilder-DB';
       $view->heading = 'Registration';

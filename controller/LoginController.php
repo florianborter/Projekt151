@@ -30,6 +30,7 @@ require_once '../repository/LoginRepository.php';
     }
 
     public function addUser(){
+        //if($_POST["password"] === )
         $loginRepo = new LoginRepository();
         $loginRepo->addUser($_POST["nickname"], $_POST["email"], $_POST["password"]);
     }

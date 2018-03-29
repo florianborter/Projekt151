@@ -31,9 +31,26 @@ require_once '../repository/LoginRepository.php';
     }
 
     public function addUser(){
-        //if($_POST["password"] === )
         $loginRepo = new LoginRepository();
-        $loginRepo->addUser($_POST["nickname"], $_POST["email"], $_POST["password"]);
+        $regex = "#(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$#";
+        $uniqueEmail = true;
+        $emails = $loginRepo->getEmails();
+
+        foreach ($emails as $email){
+            if($_POST["email"] == $email){
+                $uniqueEmail = false;
+                break;
+            } else{
+                $uniqueEmail = true;
+            }
+        }
+
+        if($_POST["password"] == $_POST["password_check"] && preg_match($regex, $_POST["password"]) && $uniqueEmail){
+            $loginRepo->addUser($_POST["nickname"], $_POST["email"], $_POST["password"]);
+        }else{
+            $_SESSION['error'] = "blablabla";
+        }
+
     }
 }
 ?>

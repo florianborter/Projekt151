@@ -32,5 +32,23 @@ require_once '../lib/Repository.php';
             }
             return $rows;
         }
+
+        public function getEmailAndPassphrase(){
+            $query = "SELECT email,passphrase FROM {$this->tableName}";
+            $statement = ConnectionHandler::getConnection()->prepare($query);
+            $statement->execute();
+            $result = $statement->get_result();
+
+            if (!$result) {
+                throw new Exception($statement->error);
+            }
+
+            // Datensätze aus dem Resultat holen und in das Array $rows speichern
+            $rows = array();
+            while ($row = $result->fetch_object()) {
+                $rows[] = $row;
+            }
+            return $rows;
+        }
   }
 ?>

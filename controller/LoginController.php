@@ -33,7 +33,7 @@ require_once '../repository/LoginRepository.php';
     public function addUser(){
         $loginRepo = new LoginRepository();
         $regex = "#(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$#";
-        $uniqueEmail = true;
+        $uniqueEmail = false;
         $emails = $loginRepo->getEmails();
 
         foreach ($emails as $email){

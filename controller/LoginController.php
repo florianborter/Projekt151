@@ -23,7 +23,6 @@ require_once '../repository/LoginRepository.php';
      */
     public function registration()
     {
-        echo "<p>registration</p>";
       $view = new View('login_registration');
       $view->title = 'Bilder-DB';
       $view->heading = 'Registration';
@@ -35,7 +34,6 @@ require_once '../repository/LoginRepository.php';
         $regex = "#(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$#";
         $uniqueEmail = false;
         $emails = $loginRepo->getEmails();
-
         foreach ($emails as $email){
             if($_POST["email"] == $email){
                 $uniqueEmail = false;
@@ -51,6 +49,11 @@ require_once '../repository/LoginRepository.php';
             $_SESSION['error'] = "blablabla";
         }
 
+    }
+
+    public function getDataLogin(){
+        $loginMails = $_POST["email"];
+        $loginPassword = $_POST["password"];
     }
 }
 ?>

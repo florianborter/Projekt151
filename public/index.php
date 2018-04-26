@@ -1,6 +1,4 @@
 <?php
-session_start();
-$_SESSION["error"] = "";
 
 /*
  * Die index.php Datei ist der Einstiegspunkt des MVC. Hier werden zuerst alle

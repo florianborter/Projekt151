@@ -1,7 +1,9 @@
       <hr>
       <footer>
           <?php
-            echo "<div class='alert-danger'>".$_SESSION['error']."</div>";
+              if (isset($_SESSION)){
+                  echo "<div class='alert-danger'>".$_SESSION['error']."</div>";
+              }
           ?>
         <p>&copy; Copyright !gibb</p>
       </footer>

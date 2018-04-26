@@ -25,12 +25,12 @@ require_once '../lib/Repository.php';
                 throw new Exception($statement->error);
             }
 
-            // Datensätze aus dem Resultat holen und in das Array $rows speichern
+            /*// Datensätze aus dem Resultat holen und in das Array $rows speichern
             $rows = array();
             while ($row = $result->fetch_object()) {
                 $rows[] = $row;
-            }
-            return $rows;
+            }*/
+            return $result;
         }
 
         public function getEmailAndPassphrase(){
@@ -43,12 +43,7 @@ require_once '../lib/Repository.php';
                 throw new Exception($statement->error);
             }
 
-            // Datensätze aus dem Resultat holen und in das Array $rows speichern
-            $rows = array();
-            while ($row = $result->fetch_object()) {
-                $rows[] = $row;
-            }
-            return $rows;
+            return $result;
         }
   }
 ?>

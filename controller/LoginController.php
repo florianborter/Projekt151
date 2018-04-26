@@ -59,6 +59,7 @@ require_once '../repository/LoginRepository.php';
 
         $loginEMail = $_POST["email"];
         $loginPassword = $_POST["password"];
+        $loginPassword = md5($loginPassword);
 
         $rows = $loginRepo->getEmailAndPassphrase();
 
@@ -66,6 +67,10 @@ require_once '../repository/LoginRepository.php';
             if ($row["email"] == $loginEMail && $row["passphrase"] == $loginPassword){
                 session_start();
                 $_SESSION["error"] = "";
+                echo "works";
+                /*header("Location: ")*/
+            } else {
+                echo "notworking";
             }
         }
     }

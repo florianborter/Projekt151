@@ -10,6 +10,8 @@ require_once '../lib/Repository.php';
         public function addUser($nickname, $email, $passphrase){
             $query = "INSERT INTO {$this->tableName} (nickname, email, passphrase) 
                       VALUES (?, ?, ?);";
+            $passphrase = md5($passphrase);
+
             $statement = ConnectionHandler::getConnection()->prepare($query);
             $statement->bind_param("sss", $nickname, $email, $passphrase);
             $statement->execute();

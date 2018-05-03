@@ -5,6 +5,8 @@ require_once '../repository/LoginRepository.php';
  */
   class LoginController
   {
+
+    public $info = "";
     /**
      * Default-Seite für das Login: Zeigt das Login-Formular an
 	 * Dispatcher: /login
@@ -35,7 +37,7 @@ require_once '../repository/LoginRepository.php';
         $uniqueEmail = false;
         $emails = $loginRepo->getEmails();
         foreach ($emails as $email){
-            if($_POST["email"] == $email){
+            if($_POST["email"] == $email["email"]){
                 $uniqueEmail = false;
                 break;
             } else{
@@ -45,15 +47,32 @@ require_once '../repository/LoginRepository.php';
 
         if($_POST["password"] == $_POST["password_check"] && preg_match($regex, $_POST["password"]) && $uniqueEmail){
             $loginRepo->addUser($_POST["nickname"], $_POST["email"], $_POST["password"]);
+            $this->info = "Registration erfolgreich";
         }else{
-            $_SESSION['error'] = "blablabla";
+            $this->info = "Registration war nicht erfolgreich";
         }
 
     }
 
     public function getDataLogin(){
-        $loginMails = $_POST["email"];
+        $loginRepo = new LoginRepository();
+
+        $loginEMail = $_POST["email"];
         $loginPassword = $_POST["password"];
+        $loginPassword = md5($loginPassword);
+
+        $rows = $loginRepo->getEmailAndPassphrase();
+
+        foreach ($rows as $row){
+            if ($row["email"] == $loginEMail && $row["passphrase"] == $loginPassword){
+                session_start();
+                $_SESSION["error"] = "";
+                echo "works";
+                /*header("Location: ")*/
+            } else {
+                echo "notworking";
+            }
+        }
     }
 }
 ?>

@@ -24,5 +24,7 @@
     echo $button->label('Registrieren')->name('send')->type('submit')->class('btn-success');
     echo $button->end();
     echo $form->end();
+
+    echo "<p>$logincontroller->info</p>"
  
 ?>

@@ -10,6 +10,8 @@ require_once '../lib/Repository.php';
         public function addUser($nickname, $email, $passphrase){
             $query = "INSERT INTO {$this->tableName} (nickname, email, passphrase) 
                       VALUES (?, ?, ?);";
+            $passphrase = md5($passphrase);
+
             $statement = ConnectionHandler::getConnection()->prepare($query);
             $statement->bind_param("sss", $nickname, $email, $passphrase);
             $statement->execute();
@@ -25,12 +27,12 @@ require_once '../lib/Repository.php';
                 throw new Exception($statement->error);
             }
 
-            // Datensätze aus dem Resultat holen und in das Array $rows speichern
+            /*// Datensätze aus dem Resultat holen und in das Array $rows speichern
             $rows = array();
             while ($row = $result->fetch_object()) {
                 $rows[] = $row;
-            }
-            return $rows;
+            }*/
+            return $result;
         }
 
         public function getEmailAndPassphrase(){
@@ -43,12 +45,7 @@ require_once '../lib/Repository.php';
                 throw new Exception($statement->error);
             }
 
-            // Datensätze aus dem Resultat holen und in das Array $rows speichern
-            $rows = array();
-            while ($row = $result->fetch_object()) {
-                $rows[] = $row;
-            }
-            return $rows;
+            return $result;
         }
   }
 ?>

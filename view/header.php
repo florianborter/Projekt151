@@ -28,6 +28,13 @@
 			<!-- fix schf -->
             <li><a href="<?=$GLOBALS['appurl']?>/login">Login</a></li>
             <li><a href="<?=$GLOBALS['appurl']?>/login/registration">Registration</a></li>
+              <?php
+                if ($_SESSION['uid'] > 0){
+              ?>
+                    <li><a href="<?=$GLOBALS['appurl']?>/memberbereich.">logout</a></li>
+              <?php
+                }
+              ?>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

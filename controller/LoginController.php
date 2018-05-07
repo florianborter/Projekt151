@@ -34,8 +34,9 @@ require_once '../repository/LoginRepository.php';
     public function addUser(){
         $loginRepo = new LoginRepository();
         $regex = "#(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$#";
-        $uniqueEmail = false;
+        $uniqueEmail = true;
         $emails = $loginRepo->getEmails();
+
         foreach ($emails as $email){
             if($_POST["email"] == $email["email"]){
                 $uniqueEmail = false;
@@ -61,14 +62,13 @@ require_once '../repository/LoginRepository.php';
         $loginPassword = $_POST["password"];
         $loginPassword = md5($loginPassword);
 
-        $rows = $loginRepo->getEmailAndPassphrase();
+        $rows = $loginRepo->getIdEmailAndPassphrase();
 
         foreach ($rows as $row){
             if ($row["email"] == $loginEMail && $row["passphrase"] == $loginPassword){
-                session_start();
-                $_SESSION["error"] = "";
+                $_SESSION['uid'] = $row['uid'];
                 echo "works";
-                /*header("Location: ")*/
+                header("Location: ./../public/memberbereich");
             } else {
                 echo "notworking";
             }

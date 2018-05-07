@@ -27,16 +27,11 @@ require_once '../lib/Repository.php';
                 throw new Exception($statement->error);
             }
 
-            /*// Datensätze aus dem Resultat holen und in das Array $rows speichern
-            $rows = array();
-            while ($row = $result->fetch_object()) {
-                $rows[] = $row;
-            }*/
             return $result;
         }
 
-        public function getEmailAndPassphrase(){
-            $query = "SELECT email,passphrase FROM {$this->tableName}";
+        public function getIdEmailAndPassphrase(){
+            $query = "SELECT uid,email,passphrase FROM {$this->tableName}";
             $statement = ConnectionHandler::getConnection()->prepare($query);
             $statement->execute();
             $result = $statement->get_result();

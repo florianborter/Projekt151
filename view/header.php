@@ -7,7 +7,7 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="<?=$GLOBALS['appurl']?>/css/bootstrap.min.css">
     <!-- Custom styles for this template -->
-    <link href="<?=$GLOBALS['appurl']?>/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?=$GLOBALS['appurl']?>/css/style.css" >
 	<script src="<?=$GLOBALS['appurl']?>/js/jscript.js"></script>
     <title><?= $title ?></title>
   </head>
@@ -26,12 +26,16 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
 			<!-- fix schf -->
-            <li><a href="<?=$GLOBALS['appurl']?>/login">Login</a></li>
-            <li><a href="<?=$GLOBALS['appurl']?>/login/registration">Registration</a></li>
               <?php
-                if ($_SESSION['uid'] > 0){
+                if (!isset($_SESSION['uid'])){
               ?>
-                    <li><a href="<?=$GLOBALS['appurl']?>/memberbereich.">logout</a></li>
+
+                    <li><a href="<?=$GLOBALS['appurl']?>/login">Login</a></li>
+                    <li><a href="<?=$GLOBALS['appurl']?>/login/registration">Registration</a></li>
+              <?php
+                } else{
+              ?>
+                    <li><a href="<?=$GLOBALS['appurl']?>/logout">logout</a></li>
               <?php
                 }
               ?>

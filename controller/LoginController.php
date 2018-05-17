@@ -67,8 +67,9 @@ require_once '../repository/LoginRepository.php';
         foreach ($rows as $row){
             if ($row["email"] == $loginEMail && $row["passphrase"] == $loginPassword){
                 $_SESSION['uid'] = $row['uid'];
-                echo "works";
-                header("Location: ./../public/memberbereich");
+                if ($_SESSION['uid'] > 0){
+                    header("Location: ./../public/memberbereich");
+                }
             } else {
                 echo "notworking";
             }

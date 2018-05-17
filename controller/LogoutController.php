@@ -7,6 +7,6 @@
  */
 
     session_destroy();
-    header("Location: ./../view/login_index.php");
+    header("Location: ./../public/login");
 
 ?>

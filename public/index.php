@@ -8,9 +8,9 @@
  * Wie in der .htaccess Datei beschrieben, werden alle Anfragen, welche nicht
  * auf eine bestehende Datei zeigen hierhin umgeleitet.
  */
+
     session_start();
-    $_SESSION["error"] = "";
-    $_SESSION["uid"] = 0;
+
 
   // fix schf: approot für url
   $GLOBALS['appurl'] = '/m151/bilderDb/public';

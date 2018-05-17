@@ -1,4 +1,4 @@
-Create TABLE UserIG(
+Create TABLE userIG(
 	UID int PRIMARY KEY AUTO_INCREMENT,
 	nickname varchar(50) ,
     email varchar(100),
@@ -13,11 +13,11 @@ Create TABLE gallery(
     FOREIGN KEY (UID) REFERENCES userig(UID)
 );
 
-Create TABLE Picture( PID int PRIMARY KEY, image blob , Name varchar(100), thumbnail blob, GID int, FOREIGN KEY (GID) REFERENCES gallery(GID) );
+Create TABLE picture( PID int PRIMARY KEY, image blob , Name varchar(100), thumbnail blob, GID int, FOREIGN KEY (GID) REFERENCES gallery(GID) );
 
-Create TABLE Tag( TID int PRIMARY KEY, tagname varchar(100) );
+Create TABLE tag( TID int PRIMARY KEY, tagname varchar(100) );
 
-Create TABLE PictureTag(
+Create TABLE picturetag(
    PID int,
    TID int,
    FOREIGN KEY (PID) REFERENCES Picture(PID),

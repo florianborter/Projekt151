@@ -11,6 +11,7 @@ require_once '../lib/Repository.php';
 class GalleryRepository extends Repository
 {
     protected $tableName = "gallery";
+    protected $tablePicture = "picture";
 
     public function createGallery($nameGallery, $description, $uid){
         $query = "INSERT INTO {$this->tableName} (galleryname, decription, UID) 
@@ -32,5 +33,13 @@ class GalleryRepository extends Repository
         }
 
         return $result;
+    }
+
+    public function addPicture($imagename, $imageTemp){
+        $query = "INSERT INTO {$this->tablePicture} (image, picturename)
+                          VALUES(?,?);";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param("ss",$imagename, $imageTemp);
+        $statement->execute();
     }
 }

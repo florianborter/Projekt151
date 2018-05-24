@@ -12,11 +12,21 @@ class GalleryController
 {
     public function create(){
         $galleryRepo = new GalleryRepository();
-        $imagename=$_FILES['fileToUpload']['name'];
-        $imageTemp=addslashes(file_get_contents($_FILES['fileToUpload']['tmp_name']));
-        
+        //$imagename=$_FILES[$_POST["fileToUpload"]]['name'];
+
+        $imagename=addslashes($_FILES["fileToUpload"]["name"]);
+        $imageTemp=addslashes(file_get_contents(["fileToUpload"]['tmp_name']));
+        $imageType=addslashes($_FILES["fileToUpload"]["type"]);
 
         $galleryRepo->createGallery($_POST["namegallery"], $_POST["description"],$_SESSION["uid"]);
+
+        if(substr($imageType,0,5) =="image"){
+            $galleryRepo->addPicture($imagename,$imageTemp);
+        }
+        else{
+            echo "Nur Bilder sind erlaubt";
+        }
+
     }
 
     public function showGallerys(){

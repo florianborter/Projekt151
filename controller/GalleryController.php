@@ -12,6 +12,10 @@ class GalleryController
 {
     public function create(){
         $galleryRepo = new GalleryRepository();
+        $imagename=$_FILES['fileToUpload']['name'];
+        $imageTemp=addslashes(file_get_contents($_FILES['fileToUpload']['tmp_name']));
+
+
         $galleryRepo->createGallery($_POST["namegallery"], $_POST["description"],$_SESSION["uid"]);
     }
 

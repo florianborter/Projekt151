@@ -15,7 +15,7 @@ if (!empty($_POST)) {
 $lblClass = "col-md-2";
 $eltClass = "col-md-4";
 $btnClass = "btn btn-success";
-$form = new Form($GLOBALS['appurl']."/memberbereich/createGallery");
+$form = new Form($GLOBALS['appurl']."/Gallery/createGallery");
 $button = new ButtonBuilder();
 
 echo $form->input()->label('Name der Gallery')->name('namegallery')->type('text')->lblClass($lblClass)->eltClass($eltClass);

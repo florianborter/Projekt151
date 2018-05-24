@@ -6,9 +6,7 @@
 
     $logincontroller = new LoginController();
 
-    if (!empty($_POST)) {
-        $logincontroller->addUser();
-    }
+
 
     $lblClass = "col-md-2";
     $eltClass = "col-md-4";

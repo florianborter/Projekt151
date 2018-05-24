@@ -21,22 +21,4 @@ class MemberbereichController
 
         echo $_SESSION['uid'];
     }
-
-    public function showGallery()
-    {
-        $view = new View('showGallery');
-        $view->title = 'Bilder-DB';
-        $view->heading = 'Deine Galerien';
-        $view->display();
-
-    }
-
-    public function createGallery()
-    {
-        $view = new View('createGallery');
-        $view->title = 'Bilder-DB';
-        $view->heading = 'Erstelle eine neue Galerie';
-        $view->display();
-
-    }
 }

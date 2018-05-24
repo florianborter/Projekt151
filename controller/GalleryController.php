@@ -10,6 +10,24 @@ require_once("../repository/GalleryRepository.php");
 
 class GalleryController
 {
+    public function showGallery()
+    {
+        $view = new View('showGallery');
+        $view->title = 'Bilder-DB';
+        $view->heading = 'Deine Galerien';
+        $view->display();
+
+    }
+
+    public function createGallery()
+    {
+        $view = new View('createGallery');
+        $view->title = 'Bilder-DB';
+        $view->heading = 'Erstelle eine neue Galerie';
+        $view->display();
+
+    }
+
     public function create(){
         $galleryRepo = new GalleryRepository();
         //$imagename=$_FILES[$_POST["fileToUpload"]]['name'];
@@ -29,19 +47,18 @@ class GalleryController
 
     }
 
-    public function showGallerys(){
+    public function getGalleries(){
         $galleryRepo = new GalleryRepository();
         $datas = $galleryRepo->getGalleryData();
-        foreach($datas as $data){
-            if ($data['UID'] == $_SESSION['uid']){
-                ?>
-                <div class="gallery">
-                    <h1><?php echo $data['galleryname'];?></h1>
-                    <p><?php echo $data["decription"];?></p>
-                </div>
-                <?php
-            }
-        }
+
+        return $datas;
+    }
+
+    public function showGalleryDetail(){
+        $view = new View('galleryDetail');
+        $view->title = 'Bilder-DB';
+        $view->heading = 'Gallerie bearbeiten';
+        $view->display();
     }
 }
 ?>

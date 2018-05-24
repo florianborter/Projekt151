@@ -23,7 +23,7 @@ class GalleryRepository extends Repository
     }
 
     public  function getGalleryData(){
-        $query ="SELECT galleryname, decription, UID FROM {$this->tableName}";
+        $query ="SELECT GID, galleryname, decription, UID FROM {$this->tableName}";
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->execute();
         $result = $statement->get_result();

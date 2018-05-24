@@ -29,6 +29,9 @@ require_once '../repository/LoginRepository.php';
       $view->title = 'Bilder-DB';
       $view->heading = 'Registration';
       $view->display();
+      if (!empty($_POST)) {
+          $this->addUser();
+      }
     }
 
     public function addUser(){

@@ -43,5 +43,12 @@ class GalleryController
 
         return $datas;
     }
+
+    public function showGalleryDetail(){
+        $view = new View('galleryDetail');
+        $view->title = 'Bilder-DB';
+        $view->heading = 'Gallerie bearbeiten';
+        $view->display();
+    }
 }
 ?>

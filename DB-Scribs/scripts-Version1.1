@@ -6,16 +6,16 @@ Create TABLE userig(
 );
 
 Create TABLE gallery(
-	GID int PRIMARY KEY,
+	GID int PRIMARY KEY AUTO_INCREMENT,
 	galleryname varchar(100) ,
     decription varchar(500),
    	UID int,
     FOREIGN KEY (UID) REFERENCES userig(UID)
 );
 
-Create TABLE picture( PID int PRIMARY KEY, image blob , Name varchar(100), thumbnail blob, GID int, FOREIGN KEY (GID) REFERENCES gallery(GID) );
+Create TABLE picture( PID int PRIMARY KEY AUTO_INCREMENT, image blob , Name varchar(100), thumbnail blob, GID int, FOREIGN KEY (GID) REFERENCES gallery(GID) );
 
-Create TABLE tag( TID int PRIMARY KEY, tagname varchar(100) );
+Create TABLE tag( TID int PRIMARY KEY AUTO_INCREMENT, tagname varchar(100) );
 
 Create TABLE picturetag(
    PID int,

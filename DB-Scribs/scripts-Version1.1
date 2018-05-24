@@ -1,4 +1,4 @@
-Create TABLE userIG(
+Create TABLE userig(
 	UID int PRIMARY KEY AUTO_INCREMENT,
 	nickname varchar(50) ,
     email varchar(100),
@@ -7,7 +7,7 @@ Create TABLE userIG(
 
 Create TABLE gallery(
 	GID int PRIMARY KEY,
-	name varchar(100) ,
+	galleryname varchar(100) ,
     decription varchar(500),
    	UID int,
     FOREIGN KEY (UID) REFERENCES userig(UID)

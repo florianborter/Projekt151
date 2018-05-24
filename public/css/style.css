@@ -1,6 +1,6 @@
 body {
-  padding-top: 50px;
-}
+   padding-top: 50px;
+ }
 
 
 /*.item img{
@@ -31,4 +31,23 @@ body {
 
 .thumbnail:hover img{
   transform: scale(1.2);
+}
+
+.gallery{
+  background-color: #d4d8d8;
+  border-radius: 10px;
+  width: 300px;
+  height: 100px;
+  text-align: center;
+  float: left;
+  margin: 5px;
+}
+
+.gallery :hover{
+  border-color: #033c73;
+}
+
+.gallery h1{
+  font-family: "Calibri Light";
+  font-size: 30px;
 }

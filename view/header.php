@@ -35,8 +35,8 @@
               <?php
                 } else{
               ?>
-                    <li><a href="<?=$GLOBALS['appurl']?>/memberbereich/showGallery">my Gallery</a></li>
-                    <li><a href="<?=$GLOBALS['appurl']?>/memberbereich/createGallery">Create Gallery</a></li>
+                    <li><a href="<?=$GLOBALS['appurl']?>/Gallery/showGallery">my Gallery</a></li>
+                    <li><a href="<?=$GLOBALS['appurl']?>/Gallery/createGallery">Create Gallery</a></li>
                     <li><a href="<?=$GLOBALS['appurl']?>/logout">logout</a></li>
               <?php
                 }

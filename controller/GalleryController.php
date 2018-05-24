@@ -12,6 +12,10 @@ class GalleryController
 {
     public function create(){
         $galleryRepo = new GalleryRepository();
+        $imagename=$_FILES['fileToUpload']['name'];
+        $imageTemp=addslashes(file_get_contents($_FILES['fileToUpload']['tmp_name']));
+        
+
         $galleryRepo->createGallery($_POST["namegallery"], $_POST["description"],$_SESSION["uid"]);
     }
 
@@ -22,7 +26,7 @@ class GalleryController
             if ($data['UID'] == $_SESSION['uid']){
                 ?>
                 <div class="gallery">
-                    <h1><?php echo $data['galleryname']; ?></h1>
+                    <h1><?php echo $data['galleryname'];?></h1>
                     <p><?php echo $data["decription"];?></p>
                 </div>
                 <?php

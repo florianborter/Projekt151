@@ -48,21 +48,25 @@ require_once("../controller/GalleryController.php");
                         <p style="margin-top: 10px">Beschreibung der Galerie:</p>
                     </div>
                     <div class="row">
-                        <input type="text" name="decription" placeholder="Beschreibung"
-                               value="<?= $gallery['decription'] ?>">
+                        <textarea rows="3" cols="22" name="decription" placeholder="Beschreibung"><?=$gallery['decription']?></textarea>
                     </div>
                     <div class="row">
-                        <div style="margin-top: 15px; float: left;">
-                            <?php
-                            echo $button->start($lblClass, $eltClass);
-                            echo $button->label('aktualisieren')->name('send')->type('submit')->class('btn-success');
-                            echo $button->end();
-                            ?>
+                        <div style="text-align: left">
+                            <button class="btn btn-success" name="send" type="submit">Galerie aktualisieren</button>
                         </div>
                     </div>
                     <?php
                     echo $form->end();
                     ?>
+                    <div class="row">
+                        <div style="text-align: left; margin-top: 10px">
+                            <?php $action = $GLOBALS['appurl'] . "/Gallery/executeFunction";?>
+                            <form class='form-horizontal' action='<?=$action?>' method='post' enctype='multipart/form-data' onsubmit="return confirm('Wirklich löschen? Ja/Nein')">
+                                <input type="text" class="notRendered" name="functionGalleryDetail" value="deleteGallery">
+                                <button class="btn btn-danger" name="send" type="submit">Galerie löschen</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

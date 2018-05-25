@@ -73,6 +73,10 @@ class GalleryController
                 $this->updateGallery($_SESSION['gid'], $_POST['galleryname'], $_POST['decription']);
                 $this->showGalleryDetail();
             }
+            if($functionToExecute == "deleteGallery"){
+                $this->deleteGallery($_SESSION['gid']);
+                $this->showGallery();
+            }
         }
     }
     public function showGalleryDetail(){
@@ -89,6 +93,11 @@ class GalleryController
     public function updateGallery($gid, $galleryname, $decription){
         $galleryRepo = new GalleryRepository();
         $galleryRepo->updateGallery($gid, $galleryname,$decription);
+    }
+
+    public function deleteGallery($gid){
+        $galleryRepo = new GalleryRepository();
+        $galleryRepo->deleteGallery($gid);
     }
 }
 ?>

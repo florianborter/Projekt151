@@ -61,11 +61,15 @@ class GalleryRepository extends Repository
     public function updateGallery($gid, $galleryname, $decription){
         $query = "UPDATE {$this->tableName} set galleryname='$galleryname', decription='$decription'
                       WHERE GID = $gid;";
-        /*$query = "UPDATE {$this->tableName} set galleryname='pls', decription='work'
-                      WHERE GID = 3;";*/
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        /*$statement->bind_param("ss",$galleryname, $decription);*/
+        $statement->execute();
+    }
+
+    public function deleteGallery($gid){
+        $query = "Delete from {$this->tableName} WHERE GID = $gid;";
+
+        $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->execute();
     }
 }

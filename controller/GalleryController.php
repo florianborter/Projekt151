@@ -54,6 +54,13 @@ class GalleryController
         return $datas;
     }
 
+    public function getGallery($galleryId){
+        $galleryRepo = new GalleryRepository();
+        $result = $galleryRepo->getGallery($galleryId);
+        $array = json_decode(json_encode($result), true);
+        return $array;
+    }
+
     public function showGalleryDetail(){
         $view = new View('galleryDetail');
         $view->title = 'Bilder-DB';

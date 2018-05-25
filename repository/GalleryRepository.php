@@ -42,4 +42,19 @@ class GalleryRepository extends Repository
         $statement->bind_param("ss",$imagename, $imageTemp);
         $statement->execute();
     }
+
+    public function getGallery($galleryId){
+        $query ="SELECT * FROM {$this->tableName} WHERE GID = $galleryId;";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->execute();
+        $result = $statement->get_result();
+
+        if (!$result) {
+            throw new Exception($statement->error);
+        }
+
+        $row = array();
+        $row = $result->fetch_object();
+        return $row;
+    }
 }

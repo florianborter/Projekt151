@@ -8,39 +8,64 @@
 
 require_once("../controller/GalleryController.php");
     $galleryController = new GalleryController();
-    //wenn yves gepusht hat kann die gid von der Session genommen werden.
-    //$gallery = $galleryController->getGallery($_SESSION['gid']);
-    $gallery = $galleryController->getGallery(1);
+    if(!isset($_GET['galleryId'])) {
+        $gallery = $galleryController->getGallery($_SESSION['gid']);
 
-?>
-<div class="container">
-    <div class="row">
-        <div class="col-md-9">
-            <?php
-            if (!empty($_POST)) {
-                $gallerycontroller->pictureAdd();
-            }
+        ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <?php
 
-            $lblClass = "col-md-2";
-            $eltClass = "col-md-4";
-            $btnClass = "btn btn-success";
-            $form = new Form($GLOBALS['appurl']."/Gallery/showGalleryDetail");
-            $button = new ButtonBuilder();
-            echo $form->input()->label('Bilder auswählen')->name('fileToUpload')->type('file')->lblClass($lblClass)->eltClass($eltClass);
-            echo $button->start($lblClass, $eltClass);
-            echo $button->label('hinzufügen')->name('send')->type('submit')->class('btn-success');
-            echo $button->end();
-            echo $form->end();
-            ?>
-        </div>
-        <!--Edit bereich-->
-        <div class="col-md-3">
-            <div class="container">
-                <div class="row">
-                    <p>Name der Galerie:</p>
-                    <p><?=$gallery['galleryname']?></p>
+                    $lblClass = "col-md-2";
+                    $eltClass = "col-md-4";
+                    $btnClass = "btn btn-success";
+                    $form = new Form($GLOBALS['appurl'] . "/Gallery/executeFunction");
+                    ?>
+                    <input type="text" class="notRendered" name="functionGalleryDetail" value="addPicture">
+                    <?php
+                    $button = new ButtonBuilder();
+                    echo $form->input()->label('Bilder auswählen')->name('fileToUpload')->type('file')->lblClass($lblClass)->eltClass($eltClass);
+                    echo $button->start($lblClass, $eltClass);
+                    echo $button->label('hinzufügen')->name('send')->type('submit')->class('btn-success');
+                    echo $button->end();
+                    echo $form->end();
+                    ?>
+                </div>
+                <!--Edit bereich-->
+                <div class="col-md-3">
+                    <?php
+                    $form = new Form($GLOBALS['appurl'] . "/Gallery/executeFunction");
+                    ?>
+                    <input type="text" class="notRendered" name="functionGalleryDetail" value="updateGallery">
+                    <div class="row">
+                        <p>Name der Galerie:</p>
+                    </div>
+                    <div class="row">
+                        <input type="text" name="galleryname" placeholder="Name" value="<?= $gallery['galleryname'] ?>">
+                    </div>
+                    <div class="row">
+                        <p style="margin-top: 10px">Beschreibung der Galerie:</p>
+                    </div>
+                    <div class="row">
+                        <input type="text" name="decription" placeholder="Beschreibung"
+                               value="<?= $gallery['decription'] ?>">
+                    </div>
+                    <div class="row">
+                        <div style="margin-top: 15px; float: left;">
+                            <?php
+                            echo $button->start($lblClass, $eltClass);
+                            echo $button->label('aktualisieren')->name('send')->type('submit')->class('btn-success');
+                            echo $button->end();
+                            ?>
+                        </div>
+                    </div>
+                    <?php
+                    echo $form->end();
+                    ?>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+        <?php
+    }
+?>

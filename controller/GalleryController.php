@@ -62,6 +62,19 @@ class GalleryController
         return $array;
     }
 
+    public function executeFunction(){
+        if (isset($_POST) && isset($_POST['functionGalleryDetail'])){
+            $functionToExecute = $_POST['functionGalleryDetail'];
+            if($functionToExecute == "addPicture"){
+                $this->pictureAdd();
+                $this->showGalleryDetail();
+            }
+            if($functionToExecute == "updateGallery"){
+                $this->updateGallery($_SESSION['gid'], $_POST['galleryname'], $_POST['decription']);
+                $this->showGalleryDetail();
+            }
+        }
+    }
     public function showGalleryDetail(){
         $view = new View('galleryDetail');
         $view->title = 'Bilder-DB';
@@ -71,6 +84,11 @@ class GalleryController
             $_SESSION['gid'] = $_GET['galleryId'];
             header("Location: ".$GLOBALS['appurl']."/Gallery/showGalleryDetail");
         }
+    }
+
+    public function updateGallery($gid, $galleryname, $decription){
+        $galleryRepo = new GalleryRepository();
+        $galleryRepo->updateGallery($gid, $galleryname,$decription);
     }
 }
 ?>

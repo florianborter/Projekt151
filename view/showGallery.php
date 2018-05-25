@@ -19,12 +19,12 @@ foreach($gallerycontroller ->getGalleries() as $gallery){
     }
 }
 
-
+/*
 $lblClass = "col-md-2";
 $eltClass = "col-md-4";
 $btnClass = "btn btn-success";
 $form = new Form($GLOBALS['appurl']."/Gallery/showGallery");
 $button = new ButtonBuilder();
 echo $button->end();
-echo $form->end();
+echo $form->end();*/
 ?>

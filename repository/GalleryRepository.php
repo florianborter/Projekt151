@@ -35,11 +35,11 @@ class GalleryRepository extends Repository
         return $result;
     }
 
-    public function addPicture($imagename, $imageTemp){
-        $query = "INSERT INTO {$this->tablePicture} (image, picturename)
-                          VALUES(?,?);";
+    public function addPicture($imagename, $imageTemp, $gid){
+        $query = "INSERT INTO {$this->tablePicture} (image, picturename,GID)
+                          VALUES(?,?,?);";
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param("ss",$imagename, $imageTemp);
+        $statement->bind_param("ssi",$imagename, $imageTemp,$gid);
         $statement->execute();
     }
 

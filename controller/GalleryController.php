@@ -16,7 +16,7 @@ class GalleryController
         $view->title = 'Bilder-DB';
         $view->heading = 'Deine Galerien';
         $view->display();
-
+        $_SESSION['createGalleryInfo'] = "";
     }
 
     public function createGallery()
@@ -25,27 +25,40 @@ class GalleryController
         $view->title = 'Bilder-DB';
         $view->heading = 'Erstelle eine neue Galerie';
         $view->display();
-
+        $_SESSION['editGalleryInfo'] = "";
+        $_SESSION['addPictureInfo'] = "";
     }
 
     public function create(){
         $galleryRepo = new GalleryRepository();
-        $galleryRepo->createGallery($_POST["namegallery"], $_POST["description"],$_SESSION["uid"]);
+        if($_POST["namegallery"] != "" && $_POST["description"] != ""){
+            $galleryRepo->createGallery($_POST["namegallery"], $_POST["description"],$_SESSION["uid"]);
+            $_SESSION['createGalleryInfo'] = "";
+            header("Location: ".$GLOBALS['appurl']."/Gallery/showGallery");
+        } else{
+            $_SESSION['createGalleryInfo'] = "Fülle bitte alle Felder aus";
+        }
     }
 
     public function pictureAdd(){
         $galleryRepo = new GalleryRepository();
-        $imagename=addslashes($_FILES["fileToUpload"]["name"]);
-        $imageTemp=addslashes(file_get_contents(["fileToUpload"]["tmp_name"]));
-        $imageType=addslashes($_FILES["fileToUpload"]["type"]);
-        $gid = $_SESSION['gid'];
+        if(isset($_POST['fileToUpload'])){
+            $imagename=addslashes($_FILES["fileToUpload"]["name"]);
+            $imageTemp=addslashes(file_get_contents(["fileToUpload"]["tmp_name"]));
+            $imageType=addslashes($_FILES["fileToUpload"]["type"]);
+            $gid = $_SESSION['gid'];
 
-        if(substr($imageType,0,5) =="image"){
-            $galleryRepo->addPicture($imagename,$imageTemp,$gid);
+            if(substr($imageType,0,5) =="image"){
+                $galleryRepo->addPicture($imagename,$imageTemp,$gid);
+                $_SESSION['addPictureInfo'] = "";
+            }
+            else {
+                echo "Nur Bilder sind erlaubt";
+            }
+        } else{
+            $_SESSION['addPictureInfo'] = "Kein Bild ausgewählt";
         }
-        else {
-            echo "Nur Bilder sind erlaubt";
-        }
+
     }
 
     public function getGalleries(){
@@ -97,7 +110,13 @@ class GalleryController
 
     public function updateGallery($gid, $galleryname, $decription, $shared){
         $galleryRepo = new GalleryRepository();
-        $galleryRepo->updateGallery($gid, $galleryname, $decription, $shared);
+        if($galleryname!="" && $decription!=""){
+            $galleryRepo->updateGallery($gid, $galleryname, $decription, $shared);
+            $_SESSION['editGalleryInfo'] = "";
+        } else{
+            $_SESSION['editGalleryInfo'] = "Bitte füllen sie alle Felder aus";
+        }
+        $_SESSION['addPictureInfo'] = "";
     }
 
     public function deleteGallery($gid){

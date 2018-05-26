@@ -21,4 +21,7 @@
   echo $button->label('Login')->name('send')->type('submit')->class('btn-success');
   echo $button->end();
   echo $form->end();
+
+  $text = $_SESSION['loginInfo'];
+  echo "<p>$text</p>";
 ?>

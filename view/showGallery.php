@@ -6,16 +6,49 @@
 require_once("../controller/GalleryController.php");
 
 $gallerycontroller = new GalleryController();
-foreach($gallerycontroller ->getGalleries() as $gallery){
-    if ($gallery['UID'] == $_SESSION['uid']){
-        ?>
-        <div class="gallery">
-            <?php echo "<a href=".$GLOBALS['appurl']."/Gallery/showGalleryDetail?galleryId=".$gallery['GID'].">";?>
-                <h1><?php echo $gallery['galleryname']; ?></h1>
-                <p><?php echo $gallery["decription"];?></p>
-            </>
-        </div>
-        <?php
-    }
-}
+$galleries = $gallerycontroller ->getGalleries();
 ?>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <?php
+            foreach($galleries as $gallery){
+                if ($gallery['UID'] == $_SESSION['uid'] && $gallery['shared'] == 0){
+                    ?>
+                    <div class="gallery">
+                        <?php echo "<a href=".$GLOBALS['appurl']."/Gallery/showGalleryDetail?galleryId=".$gallery['GID'].">";?>
+                            <h1><?php echo $gallery['galleryname']; ?></h1>
+                            <p><?php echo $gallery["decription"];?></p>
+                        </a>
+                    </div>
+                    <?php
+                }
+            }
+            ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Von dir Freigegeben</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <?php
+            foreach($galleries as $gallery){
+                if ($gallery['UID'] == $_SESSION['uid'] && $gallery['shared'] == 1){
+                    ?>
+                    <div class="gallery">
+                        <?php echo "<a href=".$GLOBALS['appurl']."/Gallery/showGalleryDetail?galleryId=".$gallery['GID'].">";?>
+                            <h1><?php echo $gallery['galleryname']; ?></h1>
+                            <p><?php echo $gallery["decription"];?></p>
+                        </a>
+                    </div>
+                    <?php
+                }
+            }
+            ?>
+        </div>
+    </div>
+</div>

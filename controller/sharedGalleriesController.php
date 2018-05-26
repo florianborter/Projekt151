@@ -9,6 +9,18 @@
 class sharedGalleriesController
 {
 
+    /**
+     * sharedGalleriesController constructor.
+     */
+    public function __construct()
+    {
+        $_SESSION['registrationInfo'] = "";
+        $_SESSION['loginInfo'] = "";
+        $_SESSION['createGalleryInfo'] = "";
+        $_SESSION['editGalleryInfo'] = "";
+        $_SESSION['addPictureInfo'] = "";
+    }
+
     public function showSharedGalleries(){
         $view = new View('sharedGalleries');
         $view->title = 'Bilder-DB';

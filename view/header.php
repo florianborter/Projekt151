@@ -47,4 +47,4 @@
       </div>
     </nav>
     <div class="container">
-    <h3><?= $heading ?></h3>
+    <h3 style="padding-left: 15px"><?= $heading ?></h3>

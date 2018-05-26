@@ -30,6 +30,8 @@ require_once("../controller/GalleryController.php");
                     echo $button->label('hinzufügen')->name('send')->type('submit')->class('btn-success');
                     echo $button->end();
                     echo $form->end();
+                    $text = $_SESSION['addPictureInfo'];
+                    echo "<p>$text</p>";
                     ?>
                 </div>
                 <!--Edit bereich-->
@@ -66,6 +68,8 @@ require_once("../controller/GalleryController.php");
                     </div>
                     <?php
                     echo $form->end();
+                    $text = $_SESSION['editGalleryInfo'];
+                    echo "<p>$text</p>";
                     ?>
                     <div class="row">
                         <div style="text-align: left; margin-top: 10px">

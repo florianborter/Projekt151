@@ -11,6 +11,15 @@
 
     session_start();
 
+if(!isset($_SESSION['once'])){
+    $_SESSION['registrationInfo'] = "";
+    $_SESSION['loginInfo'] = "";
+    $_SESSION['createGalleryInfo'] = "";
+    $_SESSION['editGalleryInfo'] = "";
+    $_SESSION['addPictureInfo'] = "";
+    $_SESSION['once'] = "ausgeführt";
+}
+
 
   // fix schf: approot für url
   $GLOBALS['appurl'] = '/m151/bilderDb/public';

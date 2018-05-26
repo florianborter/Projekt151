@@ -20,9 +20,11 @@ $button = new ButtonBuilder();
 
 echo $form->input()->label('Name der Gallery')->name('namegallery')->type('text')->lblClass($lblClass)->eltClass($eltClass);
 echo $form->input()->label('Beschreibung')->name('description')->type('text')->lblClass($lblClass)->eltClass($eltClass);
-//echo $form->input()->label('Bilder auswählen')->name('fileToUpload')->type('file')->lblClass($lblClass)->eltClass($eltClass);
 echo $button->start($lblClass, $eltClass);
 echo $button->label('erstellen')->name('send')->type('submit')->class('btn-success');
 echo $button->end();
 echo $form->end();
+
+$text = $_SESSION['createGalleryInfo'];
+echo "<p>$text</p>";
 ?>

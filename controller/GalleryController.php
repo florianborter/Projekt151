@@ -70,7 +70,12 @@ class GalleryController
                 $this->showGalleryDetail();
             }
             if($functionToExecute == "updateGallery"){
-                $this->updateGallery($_SESSION['gid'], $_POST['galleryname'], $_POST['decription']);
+                if(isset($_POST['shared']) && $_POST['shared'] == 'checked'){
+                    $isChecked = 1;
+                } else{
+                    $isChecked = 0;
+                }
+                $this->updateGallery($_SESSION['gid'], $_POST['galleryname'], $_POST['decription'], $isChecked);
                 $this->showGalleryDetail();
             }
             if($functionToExecute == "deleteGallery"){
@@ -90,9 +95,9 @@ class GalleryController
         }
     }
 
-    public function updateGallery($gid, $galleryname, $decription){
+    public function updateGallery($gid, $galleryname, $decription, $shared){
         $galleryRepo = new GalleryRepository();
-        $galleryRepo->updateGallery($gid, $galleryname,$decription);
+        $galleryRepo->updateGallery($gid, $galleryname, $decription, $shared);
     }
 
     public function deleteGallery($gid){

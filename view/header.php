@@ -29,12 +29,13 @@
               <?php
                 if (!isset($_SESSION['uid'])){
               ?>
-
+                    <li><a href="<?=$GLOBALS['appurl']?>/sharedGalleries/showSharedGalleries">Freigegebene Galerien</a></li>
                     <li><a href="<?=$GLOBALS['appurl']?>/login">Login</a></li>
                     <li><a href="<?=$GLOBALS['appurl']?>/login/registration">Registration</a></li>
               <?php
                 } else{
               ?>
+                    <li><a href="<?=$GLOBALS['appurl']?>/sharedGalleries/showSharedGalleries">Freigegebene Galerien</a></li>
                     <li><a href="<?=$GLOBALS['appurl']?>/Gallery/showGallery">my Gallery</a></li>
                     <li><a href="<?=$GLOBALS['appurl']?>/Gallery/createGallery">Create Gallery</a></li>
                     <li><a href="<?=$GLOBALS['appurl']?>/logout">logout</a></li>

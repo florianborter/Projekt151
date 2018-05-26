@@ -23,7 +23,7 @@ class GalleryRepository extends Repository
     }
 
     public  function getGalleryData(){
-        $query ="SELECT GID, galleryname, decription, UID FROM {$this->tableName}";
+        $query ="SELECT GID, galleryname, decription, UID, shared FROM {$this->tableName}";
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->execute();
         $result = $statement->get_result();
@@ -58,8 +58,8 @@ class GalleryRepository extends Repository
         return $row;
     }
 
-    public function updateGallery($gid, $galleryname, $decription){
-        $query = "UPDATE {$this->tableName} set galleryname='$galleryname', decription='$decription'
+    public function updateGallery($gid, $galleryname, $decription, $shared){
+        $query = "UPDATE {$this->tableName} set galleryname='$galleryname', decription='$decription', shared='$shared'
                       WHERE GID = $gid;";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);

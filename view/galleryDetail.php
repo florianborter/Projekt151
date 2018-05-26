@@ -51,6 +51,15 @@ require_once("../controller/GalleryController.php");
                         <textarea rows="3" cols="22" name="decription" placeholder="Beschreibung"><?=$gallery['decription']?></textarea>
                     </div>
                     <div class="row">
+                        <?php
+                            if($gallery['shared'] == 0){
+                                echo '<input type="checkbox" name="shared" value="checked"> ist Freigegeben';
+                            }else{
+                                echo '<input type="checkbox" name="shared" value="checked" checked> ist Freigegeben';
+                            }
+                        ?>
+                    </div>
+                    <div class="row">
                         <div style="text-align: left">
                             <button class="btn btn-success" name="send" type="submit">Galerie aktualisieren</button>
                         </div>

@@ -17,6 +17,7 @@ if(!isset($_SESSION['once'])){
     $_SESSION['createGalleryInfo'] = "";
     $_SESSION['editGalleryInfo'] = "";
     $_SESSION['addPictureInfo'] = "";
+    $_SESSION['editUserInfo'] = "";
     $_SESSION['once'] = "ausgeführt";
 }
 

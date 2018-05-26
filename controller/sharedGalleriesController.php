@@ -19,6 +19,7 @@ class sharedGalleriesController
         $_SESSION['createGalleryInfo'] = "";
         $_SESSION['editGalleryInfo'] = "";
         $_SESSION['addPictureInfo'] = "";
+        $_SESSION['editUserInfo'] = "";
     }
 
     public function showSharedGalleries(){

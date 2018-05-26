@@ -17,6 +17,7 @@ class GalleryController
         $view->heading = 'Deine Galerien';
         $view->display();
         $_SESSION['createGalleryInfo'] = "";
+        $_SESSION['editUserInfo'] = "";
     }
 
     public function createGallery()
@@ -27,6 +28,7 @@ class GalleryController
         $view->display();
         $_SESSION['editGalleryInfo'] = "";
         $_SESSION['addPictureInfo'] = "";
+        $_SESSION['editUserInfo'] = "";
     }
 
     public function create(){

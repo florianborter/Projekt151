@@ -36,8 +36,9 @@
                 } else{
               ?>
                     <li><a href="<?=$GLOBALS['appurl']?>/sharedGalleries/showSharedGalleries">Freigegebene Galerien</a></li>
-                    <li><a href="<?=$GLOBALS['appurl']?>/Gallery/showGallery">my Gallery</a></li>
-                    <li><a href="<?=$GLOBALS['appurl']?>/Gallery/createGallery">Create Gallery</a></li>
+                    <li><a href="<?=$GLOBALS['appurl']?>/Gallery/showGallery">Meine Galerien</a></li>
+                    <li><a href="<?=$GLOBALS['appurl']?>/Gallery/createGallery">Galerie erstellen</a></li>
+                    <li><a href="<?=$GLOBALS['appurl']?>/User/showEditUser">Benutzeroptionen</a></li>
                     <li><a href="<?=$GLOBALS['appurl']?>/logout">logout</a></li>
               <?php
                 }

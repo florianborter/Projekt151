@@ -10,7 +10,7 @@ Create TABLE gallery(
 	galleryname varchar(100) ,
     decription varchar(500),
    	UID int,
-    FOREIGN KEY (UID) REFERENCES userig(UID)
+    FOREIGN KEY (UID) REFERENCES userig(UID) ON DELETE CASCADE
 );
 
 Create TABLE picture(
@@ -19,12 +19,17 @@ Create TABLE picture(
     picturename varchar(100),
     thumbnail blob,
     GID int,
-    FOREIGN KEY (GID) REFERENCES gallery(GID) );
+    FOREIGN KEY (GID) REFERENCES gallery(GID) ON DELETE CASCADE
+);
 
-Create TABLE tag( TID int PRIMARY KEY AUTO_INCREMENT, tagname varchar(100) );
+Create TABLE tag(
+    TID int PRIMARY KEY AUTO_INCREMENT,
+    tagname varchar(100)
+);
 
 Create TABLE picturetag(
    PID int,
    TID int,
-   FOREIGN KEY (PID) REFERENCES Picture(PID),
-   FOREIGN KEY (TID) REFERENCES Tag(TID));
+   FOREIGN KEY (PID) REFERENCES Picture(PID) ON DELETE CASCADE,
+   FOREIGN KEY (TID) REFERENCES Tag(TID) ON DELETE CASCADE
+);

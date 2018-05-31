@@ -5,9 +5,7 @@
  * Date: 17.05.2018
  * Time: 08:59
  */
-
 require_once("../repository/GalleryRepository.php");
-
 class GalleryController
 {
     public function showGallery()
@@ -16,16 +14,13 @@ class GalleryController
         $view->title = 'Bilder-DB';
         $view->heading = 'Deine Galerien';
         $view->display();
-
     }
-
     public function createGallery()
     {
         $view = new View('createGallery');
         $view->title = 'Bilder-DB';
         $view->heading = 'Erstelle eine neue Galerie';
         $view->display();
-
     }
 
     public function create(){
@@ -36,10 +31,9 @@ class GalleryController
     public function pictureAdd(){
         $galleryRepo = new GalleryRepository();
         $imagename=addslashes($_FILES["fileToUpload"]["name"]);
-        $imageTemp=addslashes(file_get_contents(["fileToUpload"]["tmp_name"]));
+        $imageTemp=addslashes(file_get_contents($_FILES["fileToUpload"]["tmp_name"]));
         $imageType=addslashes($_FILES["fileToUpload"]["type"]);
         $gid = $_SESSION['gid'];
-
         if(substr($imageType,0,5) =="image"){
             $galleryRepo->addPicture($imagename,$imageTemp,$gid);
         }
@@ -48,13 +42,46 @@ class GalleryController
         }
     }
 
+    public function getPictures(){
+        $galleryRepo = new GalleryRepository();
+        $pictures = $galleryRepo->getPicturesData();
+        return $pictures;
+    }
+
+
+
+
+
     public function getGalleries(){
         $galleryRepo = new GalleryRepository();
         $datas = $galleryRepo->getGalleryData();
-
         return $datas;
     }
 
+    public function getGallery($galleryId){
+        $galleryRepo = new GalleryRepository();
+        $result = $galleryRepo->getGallery($galleryId);
+        $array = json_decode(json_encode($result), true);
+        return $array;
+    }
+
+    public function executeFunction(){
+        if (isset($_POST) && isset($_POST['functionGalleryDetail'])){
+            $functionToExecute = $_POST['functionGalleryDetail'];
+            if($functionToExecute == "addPicture"){
+                $this->pictureAdd();
+                $this->showGalleryDetail();
+            }
+            if($functionToExecute == "updateGallery"){
+                $this->updateGallery($_SESSION['gid'], $_POST['galleryname'], $_POST['decription']);
+                $this->showGalleryDetail();
+            }
+            if($functionToExecute == "deleteGallery"){
+                $this->deleteGallery($_SESSION['gid']);
+                $this->showGallery();
+            }
+        }
+    }
     public function showGalleryDetail(){
         $view = new View('galleryDetail');
         $view->title = 'Bilder-DB';
@@ -64,6 +91,14 @@ class GalleryController
             $_SESSION['gid'] = $_GET['galleryId'];
             header("Location: ".$GLOBALS['appurl']."/Gallery/showGalleryDetail");
         }
+    }
+    public function updateGallery($gid, $galleryname, $decription){
+        $galleryRepo = new GalleryRepository();
+        $galleryRepo->updateGallery($gid, $galleryname,$decription);
+    }
+    public function deleteGallery($gid){
+        $galleryRepo = new GalleryRepository();
+        $galleryRepo->deleteGallery($gid);
     }
 }
 ?>

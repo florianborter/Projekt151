@@ -19,7 +19,7 @@ class GalleryRepository extends Repository
     }
 
     public  function getGalleryData(){
-        $query ="SELECT GID, galleryname, decription, UID FROM {$this->tableName}";
+        $query ="SELECT GID, galleryname, decription, UID, shared FROM {$this->tableName}";
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->execute();
         $result = $statement->get_result();
@@ -37,6 +37,36 @@ class GalleryRepository extends Repository
         $statement->execute();
     }
 
+    public function getGallery($galleryId){
+        $query ="SELECT * FROM {$this->tableName} WHERE GID = $galleryId;";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->execute();
+        $result = $statement->get_result();
+
+        if (!$result) {
+            throw new Exception($statement->error);
+        }
+
+        $row = array();
+        $row = $result->fetch_object();
+        return $row;
+    }
+
+    public function updateGallery($gid, $galleryname, $decription, $shared){
+        $query = "UPDATE {$this->tableName} set galleryname='$galleryname', decription='$decription', shared='$shared'
+                      WHERE GID = $gid;";
+
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->execute();
+    }
+
+    public function deleteGallery($gid){
+        $query = "Delete from {$this->tableName} WHERE GID = $gid;";
+
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->execute();
+    }
+
     public function getPicturesData(){
         $query ="SELECT * FROM {$this->tablePicture}";
         $statement = ConnectionHandler::getConnection()->prepare($query);
@@ -46,34 +76,5 @@ class GalleryRepository extends Repository
             throw new Exception($statement->error);
         }
         return $result;
-    }
-
-
-
-
-    public function getGallery($galleryId){
-        $query ="SELECT * FROM {$this->tableName} WHERE GID = $galleryId;";
-        $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->execute();
-        $result = $statement->get_result();
-        if (!$result) {
-            throw new Exception($statement->error);
-        }
-        $row = array();
-        $row = $result->fetch_object();
-        return $row;
-    }
-
-    public function updateGallery($gid, $galleryname, $decription){
-        $query = "UPDATE {$this->tableName} set galleryname='$galleryname', decription='$decription'
-                      WHERE GID = $gid;";
-        $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->execute();
-    }
-
-    public function deleteGallery($gid){
-        $query = "Delete from {$this->tableName} WHERE GID = $gid;";
-        $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->execute();
     }
 }

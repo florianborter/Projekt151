@@ -23,6 +23,7 @@
     echo $button->end();
     echo $form->end();
 
-    echo "<p>$logincontroller->info</p>"
+    $text = $_SESSION['registrationInfo'];
+    echo "<p>$text</p>";
  
 ?>

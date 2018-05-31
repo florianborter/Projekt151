@@ -5,9 +5,7 @@ require_once '../repository/LoginRepository.php';
  */
   class LoginController
   {
-
-    public $info = "";
-    /**
+      /**
      * Default-Seite für das Login: Zeigt das Login-Formular an
 	 * Dispatcher: /login
      */
@@ -18,6 +16,7 @@ require_once '../repository/LoginRepository.php';
       $view->title = 'Bilder-DB';
       $view->heading = 'Login';
       $view->display();
+      $_SESSION['registrationInfo'] = "";
     }
     /**
      * Zeigt das Registrations-Formular an
@@ -29,6 +28,7 @@ require_once '../repository/LoginRepository.php';
       $view->title = 'Bilder-DB';
       $view->heading = 'Registration';
       $view->display();
+      $_SESSION['loginInfo'] = "";
       if (!empty($_POST)) {
           $this->addUser();
       }
@@ -51,9 +51,11 @@ require_once '../repository/LoginRepository.php';
 
         if($_POST["password"] == $_POST["password_check"] && preg_match($regex, $_POST["password"]) && $uniqueEmail){
             $loginRepo->addUser($_POST["nickname"], $_POST["email"], $_POST["password"]);
-            $this->info = "Registration erfolgreich";
+            $_SESSION['registrationInfo'] = "";
+            header("Location: ".$GLOBALS['appurl']."/Login/index");
         }else{
-            $this->info = "Registration war nicht erfolgreich";
+            $_SESSION['registrationInfo'] = "Registration war nicht erfolgreich";
+            header("Refresh:0");
         }
 
     }
@@ -72,9 +74,11 @@ require_once '../repository/LoginRepository.php';
                 $_SESSION['uid'] = $row['uid'];
                 if ($_SESSION['uid'] > 0){
                     header("Location: ./../public/memberbereich");
+                    $_SESSION['loginInfo'] = "";
                 }
             } else {
-                echo "notworking";
+
+                $_SESSION['loginInfo'] = "Benutzername oder Passwort falsch";
             }
         }
     }

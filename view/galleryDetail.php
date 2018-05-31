@@ -32,7 +32,9 @@ require_once("../controller/GalleryController.php");
                     echo "<p>$text</p>";
 
                     $allePictures = $galleryController->getPictures();
-
+                    ?>
+                    <div class="row">
+                    <?php
                     while($picture = $allePictures->fetch_assoc()){
                         if ($picture['GID'] == $_SESSION['gid']) {
 
@@ -42,6 +44,7 @@ require_once("../controller/GalleryController.php");
                         }
                     }
                     ?>
+                    </div>
 
 
 

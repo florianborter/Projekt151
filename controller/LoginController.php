@@ -39,9 +39,11 @@ require_once '../repository/LoginRepository.php';
         $regex = "#(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$#";
         $uniqueEmail = true;
         $emails = $loginRepo->getEmails();
+        $postEmail = htmlspecialchars($_POST["email"]);
+        $postNickname = htmlspecialchars($_POST["nickname"]);
 
         foreach ($emails as $email){
-            if($_POST["email"] == $email["email"]){
+            if($postEmail == $email["email"]){
                 $uniqueEmail = false;
                 break;
             } else{
@@ -50,7 +52,7 @@ require_once '../repository/LoginRepository.php';
         }
 
         if($_POST["password"] == $_POST["password_check"] && preg_match($regex, $_POST["password"]) && $uniqueEmail){
-            $loginRepo->addUser($_POST["nickname"], $_POST["email"], $_POST["password"]);
+            $loginRepo->addUser($postNickname, $postEmail, $_POST["password"]);
             $_SESSION['registrationInfo'] = "";
             header("Location: ".$GLOBALS['appurl']."/Login/index");
         }else{

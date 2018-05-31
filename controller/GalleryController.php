@@ -31,7 +31,10 @@ class GalleryController
     public function create(){
         $galleryRepo = new GalleryRepository();
         if($_POST["namegallery"] != "" && $_POST["description"] != ""){
-            $galleryRepo->createGallery($_POST["namegallery"], $_POST["description"],$_SESSION["uid"]);
+            $galleryName=$_POST["namegallery"];
+            $galleryName = htmlspecialchars($galleryName);
+            $decription = htmlspecialchars($_POST["description"]);
+            $galleryRepo->createGallery($galleryName, $decription,$_SESSION["uid"]);
             $_SESSION['createGalleryInfo'] = "";
             header("Location: ".$GLOBALS['appurl']."/Gallery/showGallery");
         } else{
@@ -41,7 +44,7 @@ class GalleryController
 
     public function pictureAdd(){
         $galleryRepo = new GalleryRepository();
-        if(isset($_POST['fileToUpload'])){
+        if ($_FILES['fileToUpload']['name'] != ""){
             $imagename=addslashes($_FILES["fileToUpload"]["name"]);
             $imageTemp=addslashes(file_get_contents($_FILES["fileToUpload"]["tmp_name"]));
             $imageType=addslashes($_FILES["fileToUpload"]["type"]);
@@ -95,7 +98,7 @@ class GalleryController
                 } else{
                     $isChecked = 0;
                 }
-                $this->updateGallery($_SESSION['gid'], $_POST['galleryname'], $_POST['decription'], $isChecked);
+                $this->updateGallery($_SESSION['gid'], htmlspecialchars($_POST['galleryname']), htmlspecialchars($_POST['decription']), $isChecked);
                 $this->showGalleryDetail();
             }
             if($functionToExecute == "deleteGallery"){

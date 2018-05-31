@@ -31,7 +31,7 @@ class UserController
         if (isset($_POST) && isset($_POST['functionEditUser'])){
             $functionToExecute = $_POST['functionEditUser'];
             if($functionToExecute == "editUser"){
-                $this->editUser($_POST['nickname'], $_POST['email'], $_POST['passphrase'], $_POST['passphrase2']);
+                $this->editUser(htmlspecialchars($_POST['nickname']), htmlspecialchars($_POST['email']), htmlspecialchars($_POST['passphrase']), htmlspecialchars($_POST['passphrase2']));
                 header("Location: ".$GLOBALS['appurl']."/User/showEditUser");
             }
             if($functionToExecute == "deleteUser"){

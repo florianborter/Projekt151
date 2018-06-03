@@ -36,6 +36,7 @@
                 } else{
               ?>
                     <li><a href="<?=$GLOBALS['appurl']?>/sharedGalleries/showSharedGalleries">Freigegebene Galerien</a></li>
+                    <li><a href="<?=$GLOBALS['appurl']?>/memberbereich">Alle meine Bilder</a></li>
                     <li><a href="<?=$GLOBALS['appurl']?>/Gallery/showGallery">Meine Galerien</a></li>
                     <li><a href="<?=$GLOBALS['appurl']?>/Gallery/createGallery">Galerie erstellen</a></li>
                     <li><a href="<?=$GLOBALS['appurl']?>/User/showEditUser">Benutzeroptionen</a></li>

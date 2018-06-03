@@ -29,11 +29,22 @@ class GalleryRepository extends Repository
         return $result;
     }
 
-    public function addPicture($imagename, $imageTemp, $gid){
-        $query = "INSERT INTO {$this->tablePicture} (image, picturename,GID)
+    public  function getGalleryFromUser($uid){
+        $query ="SELECT GID, galleryname, decription, UID, shared FROM {$this->tableName} where UID=$uid";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->execute();
+        $result = $statement->get_result();
+        if (!$result) {
+            throw new Exception($statement->error);
+        }
+        return $result;
+    }
+
+    public function addPicture($path, $imagename, $gid){
+        $query = "INSERT INTO {$this->tablePicture} (path, picturename,GID)
                           VALUES(?,?,?);";
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param("ssi",$imagename, $imageTemp,$gid);
+        $statement->bind_param("ssi",$path, $imagename,$gid);
         $statement->execute();
     }
 
@@ -69,6 +80,17 @@ class GalleryRepository extends Repository
 
     public function getPicturesData(){
         $query ="SELECT * FROM {$this->tablePicture}";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->execute();
+        $result = $statement->get_result();
+        if (!$result) {
+            throw new Exception($statement->error);
+        }
+        return $result;
+    }
+
+    public function getPicturesFromGallery($gid){
+        $query ="SELECT * FROM {$this->tablePicture} where GID=$gid";
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->execute();
         $result = $statement->get_result();

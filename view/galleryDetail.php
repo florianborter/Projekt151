@@ -14,42 +14,28 @@ require_once("../controller/GalleryController.php");
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
+                    <form method="POST" action="<?=$GLOBALS['appurl'] . "/Gallery/executeFunction"?>" enctype="multipart/form-data">
+                        <input type="text" class="notRendered" name="functionGalleryDetail" value="addPicture">
+                        <input type="file" name="fileToUpload">
+                        <button type="submit" class="btn btn-success" name="send">Hinzufügen</button>
+                    </form>
                     <?php
-                    $lblClass = "col-md-4";
-                    $btnClass = "col-md-2";
-                    $eltClass = "btn btn-success";
-                    $form = new Form($GLOBALS['appurl'] . "/Gallery/executeFunction");
-                    ?>
-                    <input type="text" class="notRendered" name="functionGalleryDetail" value="addPicture">
-                    <?php
-                    $button = new ButtonBuilder();
-                    echo $form->input()->label('Bilder auswählen')->name('fileToUpload')->type('file')->lblClass($lblClass)->eltClass($eltClass);
-                    echo $button->start($lblClass, $eltClass);
-                    echo $button->label('hinzufügen')->name('send')->type('submit')->class('btn-success');
-                    echo $button->end();
-                    echo $form->end();
                     $text = $_SESSION['addPictureInfo'];
                     echo "<p>$text</p>";
 
-                    $allePictures = $galleryController->getPictures();
-                    ?>
-                    <div class="row">
-                    <?php
-                    while($picture = $allePictures->fetch_assoc()){
-                        if ($picture['GID'] == $_SESSION['gid']) {
-
-                            echo '<img src="data:image/jpeg;base64,' . base64_encode($picture['image']) . '"';
-
-
-                        }
+                    foreach ($galleryController->getPicturesFromGallery($_SESSION['gid']) as $picture) {
+                        $image_name=$picture["picturename"];
+                        $image_path=$picture["path"];
+                        $src = $image_path;
+                        $src .= $image_name;
+                        ?>
+                        <div class="thumbnail">
+                            <img src="<?=$src?>" alt="<?=$src?>">
+                            <h6>Titel des Bildes</h6>
+                        </div>
+                        <?php
                     }
                     ?>
-                    </div>
-
-
-
-
-
 
 
                 </div>

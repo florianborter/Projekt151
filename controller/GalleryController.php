@@ -45,36 +45,36 @@ class GalleryController
     public function pictureAdd(){
         $galleryRepo = new GalleryRepository();
         if ($_FILES['fileToUpload']['name'] != ""){
-            $imagename=addslashes($_FILES["fileToUpload"]["name"]);
-            $imageTemp=addslashes(file_get_contents($_FILES["fileToUpload"]["tmp_name"]));
-            $imageType=addslashes($_FILES["fileToUpload"]["type"]);
+            $imagename=$_FILES["fileToUpload"]["name"];
+            /*$imageTemp=addslashes(file_get_contents($_FILES["fileToUpload"]["tmp_name"]));
+            $imageType=addslashes($_FILES["fileToUpload"]["type"]);*/
+            $uid = $_SESSION['uid'];
+            $path = "./../img/$uid/";
+            move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], "$path".$_FILES["fileToUpload"]["name"]);
             $gid = $_SESSION['gid'];
 
-            if(substr($imageType,0,5) =="image"){
-                $galleryRepo->addPicture($imagename,$imageTemp,$gid);
-                $_SESSION['addPictureInfo'] = "";
-            }
-            else {
-                echo "Nur Bilder sind erlaubt";
-            }
+            $galleryRepo->addPicture($path,$imagename,$gid);
+            $_SESSION['addPictureInfo'] = "";
         } else{
             $_SESSION['addPictureInfo'] = "Kein Bild ausgewählt";
         }
     }
 
-    public function getPictures(){
+    public function getPicturesFromGallery($gid){
         $galleryRepo = new GalleryRepository();
-        $pictures = $galleryRepo->getPicturesData();
+        $pictures = $galleryRepo->getPicturesFromGallery($gid);
         return $pictures;
     }
-
-
-
-
 
     public function getGalleries(){
         $galleryRepo = new GalleryRepository();
         $datas = $galleryRepo->getGalleryData();
+        return $datas;
+    }
+
+    public function getGalleryFromUser($uid){
+        $galleryRepo = new GalleryRepository();
+        $datas = $galleryRepo->getGalleryFromUser($uid);
         return $datas;
     }
 

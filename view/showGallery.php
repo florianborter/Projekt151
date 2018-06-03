@@ -5,7 +5,7 @@
  */
 require_once("../controller/GalleryController.php");
 $gallerycontroller = new GalleryController();
-$galleries = $gallerycontroller ->getGalleries();
+$galleries = $gallerycontroller ->getGalleryFromUser($_SESSION['uid']);
 ?>
 
 <div class="container">

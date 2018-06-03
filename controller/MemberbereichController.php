@@ -8,10 +8,6 @@
 
 class MemberbereichController
 {
-    /**
-     * Default-Seite für das Login: Zeigt das Login-Formular an
-     * Dispatcher: /memberbereich
-     */
     public function index()
     {
         $view = new View('memberbereich');

@@ -70,11 +70,15 @@ require_once '../repository/LoginRepository.php';
         $loginPassword = md5($loginPassword);
 
         $rows = $loginRepo->getIdEmailAndPassphrase();
-
         foreach ($rows as $row){
             if ($row["email"] == $loginEMail && $row["passphrase"] == $loginPassword){
                 $_SESSION['uid'] = $row['uid'];
                 if ($_SESSION['uid'] > 0){
+                    $uid = $_SESSION['uid'];
+                    $path = "./../img/$uid";
+                    if (!file_exists($path)) {
+                        mkdir("$path", 0777, true);
+                    }
                     header("Location: ./../public/memberbereich");
                     $_SESSION['loginInfo'] = "";
                 }

@@ -15,9 +15,8 @@ Create TABLE gallery(
 
 Create TABLE picture(
     PID int PRIMARY KEY AUTO_INCREMENT,
-    image blob ,
+    path varchar(100) ,
     picturename varchar(100),
-    thumbnail blob,
     GID int,
     FOREIGN KEY (GID) REFERENCES gallery(GID) ON DELETE CASCADE
 );

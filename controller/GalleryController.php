@@ -112,9 +112,17 @@ class GalleryController
         $view->title = 'Bilder-DB';
         $view->heading = 'Gallerie bearbeiten';
         $view->display();
+        $galleryRepo = new GalleryRepository();
         if (isset($_GET['galleryId'])){
-            $_SESSION['gid'] = $_GET['galleryId'];
-            header("Location: ".$GLOBALS['appurl']."/Gallery/showGalleryDetail");
+            $result = $galleryRepo->getGallery($_GET['galleryId']);
+            $array = json_decode(json_encode($result), true);
+            if($array['UID'] == $_SESSION['uid']){
+                $_SESSION['gid'] = $_GET['galleryId'];
+                header("Location: ".$GLOBALS['appurl']."/Gallery/showGalleryDetail");
+            } else{
+                session_destroy();
+                header("Location: ".$GLOBALS['appurl']."/Default");
+            }
         }
     }
 

@@ -34,10 +34,6 @@ class sharedGalleriesController
         $view->title = 'Bilder-DB';
         $view->heading = 'Freigegebene Galerie';
         $view->display();
-        /*if (isset($_GET['galleryId'])){
-            $_SESSION['sharedgid'] = $_GET['galleryId'];
-            header("Location: ".$GLOBALS['appurl']."/sharedGalleries/showSharedGalleryDetail");
-        }*/
         if (isset($_GET['galleryId'])){
             $galleryRepo = new GalleryRepository();
             $result = $galleryRepo->getGallery($_GET['galleryId']);

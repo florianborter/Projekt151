@@ -15,6 +15,5 @@ class MemberbereichController
         $view->heading = 'Memberbereich';
         $view->display();
 
-        echo $_SESSION['uid'];
     }
 }

@@ -31,7 +31,7 @@ require_once("../controller/GalleryController.php");
                         ?>
                         <div class="thumbnail">
                             <img src="<?=$src?>" alt="<?=$src?>">
-                            <h6>Titel des Bildes</h6>
+                            <h6>TODO: Tags</h6>
                         </div>
                         <?php
                     }

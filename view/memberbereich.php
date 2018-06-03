@@ -15,9 +15,11 @@ foreach ($galleryController->getGalleryFromUser($_SESSION['uid']) as $gallery){
         $src = $image_path;
         $src .= $image_name;
         ?>
-        <div class="thumbnail">
-            <img src="<?=$src?>" alt="<?=$src?>">
-            <h6>Titel des Bildes</h6>
+        <div class="row">
+            <div class="thumbnail">
+                <img src="<?=$src?>" alt="<?=$src?>">
+                <h6>Titel des Bildes</h6>
+            </div>
         </div>
         <?php
     }

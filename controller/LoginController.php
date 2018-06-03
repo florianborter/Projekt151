@@ -67,11 +67,10 @@ require_once '../repository/LoginRepository.php';
 
         $loginEMail = $_POST["email"];
         $loginPassword = $_POST["password"];
-        $loginPassword = md5($loginPassword);
 
         $rows = $loginRepo->getIdEmailAndPassphrase();
         foreach ($rows as $row){
-            if ($row["email"] == $loginEMail && $row["passphrase"] == $loginPassword){
+            if ($row["email"] == $loginEMail && password_verify($loginPassword, $row["passphrase"]) /*$row["passphrase"] == $loginPassword*/){
                 $_SESSION['uid'] = $row['uid'];
                 if ($_SESSION['uid'] > 0){
                     $uid = $_SESSION['uid'];

@@ -16,8 +16,10 @@ foreach ($galleryController->getGalleryFromUser($_SESSION['uid']) as $gallery){
         $src .= $image_name;
         ?>
         <div class="row">
-            <div class="thumbnail">
-                <img src="<?=$src?>" alt="<?=$src?>">
+            <div class="thumbnailCustom">
+                <a href="<?=$src?>" target="_blank">
+                    <img src="<?=$src?>" alt="<?=$src?>">
+                </a>
                 <h6>Titel des Bildes</h6>
             </div>
         </div>

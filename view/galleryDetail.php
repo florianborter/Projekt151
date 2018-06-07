@@ -29,11 +29,13 @@ require_once("../controller/GalleryController.php");
                         $src = $image_path;
                         $src .= $image_name;
                         ?>
-                        <div class="thumbnail">
+                        <div class="thumbnailCustom">
                             <?php $action = $GLOBALS['appurl'] . "/Gallery/executeFunction";?>
                             <form class='form-horizontal' action='<?=$action?>' method='post' enctype='multipart/form-data' onsubmit="return confirm('Bild wirklich löschen? Ja/Nein')">
                             <input type="text" class="notRendered" name="functionGalleryDetail" value="deleteImage<?=$picture['PID']?>">
-                            <img src="<?=$src?>" alt="<?=$src?>">
+                                <a href="<?=$src?>" target="_blank">
+                                    <img src="<?=$src?>" alt="<?=$src?>">
+                                </a>
                             <h6>TODO: Tags</h6>
                             <button class="btn btn-danger" name="send" type="submit">Dieses Bild löschen</button>
                             </form>

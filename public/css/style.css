@@ -23,8 +23,8 @@ body {
 
 .thumbnail img{
   min-width: 200px;
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 500px;
   transition: 0.6s ease;
 }
 

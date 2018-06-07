@@ -99,4 +99,11 @@ class GalleryRepository extends Repository
         }
         return $result;
     }
+
+    public function deletePicture($pid){
+        $query = "Delete from {$this->tablePicture} WHERE PID = $pid;";
+
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->execute();
+    }
 }

@@ -105,8 +105,18 @@ class GalleryController
                 $this->deleteGallery($_SESSION['gid']);
                 $this->showGallery();
             }
+            if(strpos($functionToExecute, "deleteImage")!== false){
+                $this->deleteImage(substr($functionToExecute, -1));
+                $this->showGalleryDetail();
+            }
         }
     }
+
+    public function deleteImage($pid){
+        $galleryrepo = new GalleryRepository();
+        $galleryrepo->deletePicture($pid);
+    }
+
     public function showGalleryDetail(){
         $view = new View('galleryDetail');
         $view->title = 'Bilder-DB';

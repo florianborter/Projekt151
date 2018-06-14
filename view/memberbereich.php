@@ -17,7 +17,7 @@ foreach ($galleryController->getGalleryFromUser($_SESSION['uid']) as $gallery){
         ?>
         <div class="row">
             <div class="thumbnailCustom">
-                <a href="<?=$src?>" target="_blank">
+                <a href="<?=$src?>" target="_blank" data-lightbox="bild-1" data-title="Bildunterschrift">
                     <img src="<?=$src?>" alt="<?=$src?>">
                 </a>
                 <h6><?=$picture['picturedescription']?></h6>

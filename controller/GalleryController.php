@@ -118,6 +118,13 @@ class GalleryController
 
     public function deleteImage($pid){
         $galleryrepo = new GalleryRepository();
+        $picture = $galleryrepo->getPictureById($pid);
+        $array = json_decode(json_encode($picture), true);
+        $image_name=$array["picturename"];
+        $image_path=$array["path"];
+        $src = $image_path;
+        $src .= $image_name;
+        unlink($src);
         $galleryrepo->deletePicture($pid);
     }
 

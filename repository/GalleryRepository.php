@@ -80,6 +80,21 @@ class GalleryRepository extends Repository
         $statement->execute();
     }
 
+    public function getPictureById($PID){
+        $query ="SELECT * FROM {$this->tablePicture} WHERE PID = $PID;";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->execute();
+        $result = $statement->get_result();
+
+        if (!$result) {
+            throw new Exception($statement->error);
+        }
+
+        $row = array();
+        $row = $result->fetch_object();
+        return $row;
+    }
+
     public function deleteGallery($gid){
         $query = "Delete from {$this->tableName} WHERE GID = $gid;";
 

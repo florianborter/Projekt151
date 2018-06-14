@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="<?=$GLOBALS['appurl']?>/css/bootstrap.min.css">
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="<?=$GLOBALS['appurl']?>/css/style.css" >
+    <script src="<?=$GLOBALS['appurl']?>/js/jquery.min.js"></script>
+    <link href="<?=$GLOBALS['appurl']?>/css/lightbox.css" rel="stylesheet">
+    <script src="<?=$GLOBALS['appurl']?>/js/lightbox.js"></script>
+
+
 	<script src="<?=$GLOBALS['appurl']?>/js/jscript.js"></script>
     <title><?= $title ?></title>
   </head>

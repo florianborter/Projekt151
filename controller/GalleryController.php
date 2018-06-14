@@ -106,7 +106,7 @@ class GalleryController
                 $this->showGallery();
             }
             if(strpos($functionToExecute, "deleteImage")!== false){
-                $this->deleteImage(substr($functionToExecute, -1));
+                $this->deleteImage(substr($functionToExecute, -2));
                 $this->showGalleryDetail();
             }
         }

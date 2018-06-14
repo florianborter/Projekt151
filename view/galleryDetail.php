@@ -33,7 +33,7 @@ require_once("../controller/GalleryController.php");
                             <?php $action = $GLOBALS['appurl'] . "/Gallery/executeFunction";?>
                             <form class='form-horizontal' action='<?=$action?>' method='post' enctype='multipart/form-data' onsubmit="return confirm('Bild wirklich löschen? Ja/Nein')">
                             <input type="text" class="notRendered" name="functionGalleryDetail" value="deleteImage<?=$picture['PID']?>">
-                                <a href="<?=$src?>" target="_blank">
+                                <a href="<?=$src?>" class="lightbox" data-lightbox="bild-1" data-title="Bildunterschrift">
                                     <img src="<?=$src?>" alt="<?=$src?>">
                                 </a>
                             <h6>TODO: Tags</h6>

@@ -14,7 +14,7 @@ body {
 
 
 .thumbnailCustom{
-  float: left;
+  float: left !important;
   margin: 10px;
   overflow: hidden;
   position: relative;

@@ -17,6 +17,7 @@ Create TABLE picture(
     PID int PRIMARY KEY AUTO_INCREMENT,
     path varchar(100) ,
     picturename varchar(100),
+    picturedescription varchar(100),
     GID int,
     FOREIGN KEY (GID) REFERENCES gallery(GID) ON DELETE CASCADE
 );

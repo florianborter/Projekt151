@@ -46,8 +46,6 @@ class GalleryController
         $galleryRepo = new GalleryRepository();
         if ($_FILES['fileToUpload']['name'] != ""){
             $imagename=$_FILES["fileToUpload"]["name"];
-            /*$imageTemp=addslashes(file_get_contents($_FILES["fileToUpload"]["tmp_name"]));
-            $imageType=addslashes($_FILES["fileToUpload"]["type"]);*/
             $uid = $_SESSION['uid'];
             $path = "./../img/$uid/";
             move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], "$path".$_FILES["fileToUpload"]["name"]);
@@ -106,8 +104,14 @@ class GalleryController
                 $this->showGallery();
             }
             if(strpos($functionToExecute, "deleteImage")!== false){
-                $this->deleteImage(substr($functionToExecute, -1));
-                $this->showGalleryDetail();
+                if(isset($_POST['update'])){
+                    $galleryrepo = new GalleryRepository();
+                    $galleryrepo->updatePicture(substr($functionToExecute, -1), $_POST['updateText']);
+                    $this->showGalleryDetail();
+                }else{
+                    $this->deleteImage(substr($functionToExecute, -1));
+                    $this->showGalleryDetail();
+                }
             }
         }
     }

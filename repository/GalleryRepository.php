@@ -41,10 +41,11 @@ class GalleryRepository extends Repository
     }
 
     public function addPicture($path, $imagename, $gid){
-        $query = "INSERT INTO {$this->tablePicture} (path, picturename,GID)
-                          VALUES(?,?,?);";
+        $empty = "keine";
+        $query = "INSERT INTO {$this->tablePicture} (path, picturename, picturedescription, GID)
+                          VALUES(?,?,?,?);";
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param("ssi",$path, $imagename,$gid);
+        $statement->bind_param("sssi",$path, $imagename, $empty, $gid);
         $statement->execute();
     }
 
@@ -66,6 +67,14 @@ class GalleryRepository extends Repository
     public function updateGallery($gid, $galleryname, $decription, $shared){
         $query = "UPDATE {$this->tableName} set galleryname='$galleryname', decription='$decription', shared='$shared'
                       WHERE GID = $gid;";
+
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->execute();
+    }
+
+    public function updatePicture($PID, $description){
+        $query = "UPDATE {$this->tablePicture} set picturedescription='$description'
+                      WHERE PID = $PID;";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->execute();

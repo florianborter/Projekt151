@@ -20,7 +20,7 @@ foreach ($galleryController->getGalleryFromUser($_SESSION['uid']) as $gallery){
                 <a href="<?=$src?>" target="_blank">
                     <img src="<?=$src?>" alt="<?=$src?>">
                 </a>
-                <h6>Titel des Bildes</h6>
+                <h6><?=$picture['picturedescription']?></h6>
             </div>
         </div>
         <?php

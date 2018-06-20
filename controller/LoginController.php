@@ -75,8 +75,10 @@ require_once '../repository/LoginRepository.php';
                 if ($_SESSION['uid'] > 0){
                     $uid = $_SESSION['uid'];
                     $path = "./../img/$uid";
+                    $thumbPath = "./../img/$uid/thumb";
                     if (!file_exists($path)) {
                         mkdir("$path", 0777, true);
+                        mkdir("$thumbPath", 0777, true);
                     }
                     header("Location: ./../public/memberbereich");
                     $_SESSION['loginInfo'] = "";

@@ -15,10 +15,15 @@ foreach ($galleryController->getGalleryFromUser($_SESSION['uid']) as $gallery){
         $image_path=$picture["path"];
         $src = $image_path;
         $src .= $image_name;
+
+        $image_name=$picture["picturename"];
+        $image_path=$picture["thumbpath"];
+        $thumbsrc = $image_path;
+        $thumbsrc .= $image_name;
         ?>
             <div class="thumbnailCustom">
                 <a href="<?=$src?>" target="_blank" data-lightbox="bild-1" data-title="Bildunterschrift">
-                    <img src="<?=$src?>" alt="<?=$src?>">
+                    <img src="<?=$thumbsrc?>" alt="<?=$thumbsrc?>">
                 </a>
                 <h6><?=$picture['picturedescription']?></h6>
             </div>

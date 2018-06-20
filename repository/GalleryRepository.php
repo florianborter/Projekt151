@@ -40,12 +40,12 @@ class GalleryRepository extends Repository
         return $result;
     }
 
-    public function addPicture($path, $imagename, $gid){
+    public function addPicture($path, $imagename, $gid, $thumbPath){
         $empty = "keine";
-        $query = "INSERT INTO {$this->tablePicture} (path, picturename, picturedescription, GID)
-                          VALUES(?,?,?,?);";
+        $query = "INSERT INTO {$this->tablePicture} (path, picturename, picturedescription, GID, thumbpath)
+                          VALUES(?,?,?,?,?);";
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param("sssi",$path, $imagename, $empty, $gid);
+        $statement->bind_param("sssis",$path, $imagename, $empty, $gid, $thumbPath);
         $statement->execute();
     }
 

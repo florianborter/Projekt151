@@ -31,9 +31,15 @@ if(!isset($_GET['galleryId'])) {
                     $image_path=$picture["path"];
                     $src = $image_path;
                     $src .= $image_name;
+
+
+                    $image_name=$picture["picturename"];
+                    $image_path=$picture["thumbpath"];
+                    $thumbsrc = $image_path;
+                    $thumbsrc .= $image_name;
                     ?>
                     <div class="thumbnail">
-                        <img src="<?=$src?>" alt="<?=$src?>">
+                        <img src="<?=$thumbsrc?>" alt="<?=$thumbsrc?>">
                         <h6>TODO: Tags</h6>
                     </div>
                     <?php

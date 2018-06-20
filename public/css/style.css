@@ -22,9 +22,7 @@ body {
 }
 
 .thumbnailCustom img{
-  min-width: 200px;
   width: auto;
-  height: 300px;
   transition: 0.6s ease;
 }
 
